@@ -108,7 +108,7 @@ function Header() {
         }}
         className={headerStyles.title}
       >
-        The Trailer Show
+        Movie Mania
       </h1>
     </header>
   );

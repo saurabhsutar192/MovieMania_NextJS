@@ -6,8 +6,7 @@ let initialState = {
   searchRes: [],
 
   videoId: null,
-  clicked: false,
-  details: [],
+
   isTrailer: false,
   isActor: false,
 };
@@ -25,10 +24,7 @@ export const reducer = (state = initialState, action) => {
         searchRes: action.payload,
         isActor: action.isActor,
       };
-    case "setClicked":
-      return { ...state, clicked: action.payload };
-    case "setDetails":
-      return { ...state, details: action.payload };
+
     case "removeTrailer":
       return { ...state, isTrailer: false };
 

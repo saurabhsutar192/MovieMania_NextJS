@@ -1,15 +1,15 @@
 import { useRef, useEffect, useState } from "react";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import headerStyles from "../CSS/header.module.css";
-import { caller, endpoints } from "../endpoints";
-import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 function Header() {
   let [search_category, setSearch_category] = useState("");
-  let dispatch = useDispatch();
+
   let dropDownList = useRef();
   let dropDownBtn = useRef();
   let searchBar = useRef();
+  let router = useRouter();
 
   function toggleDropDown() {
     dropDownList.current.classList.toggle(`${headerStyles.dropDownClicked}`);
@@ -24,44 +24,7 @@ function Header() {
   function search(e) {
     let searchQuery = e.target.value;
     if (e.keyCode === 13 && searchQuery !== "") {
-      dispatch({
-        type: "isSearched",
-        payload: true,
-      });
-
-      switch (search_category) {
-        case "Movies":
-          caller.get(endpoints.searchMovie + searchQuery).then((res) => {
-            dispatch({
-              type: "setSearchRes",
-              payload: res.data.results,
-              isActor: false,
-            });
-          });
-          break;
-        case "TV Shows":
-          caller.get(endpoints.searchTV + searchQuery).then((res) => {
-            dispatch({
-              type: "setSearchRes",
-              payload: res.data.results,
-              isActor: false,
-            });
-          });
-          break;
-        case "Actors":
-          caller.get(endpoints.searchPeople + searchQuery).then((res) => {
-            dispatch({
-              type: "setSearchRes",
-              payload: res.data.results,
-              isActor: true,
-            });
-            console.log(res.data.results);
-          });
-          break;
-        default:
-          window.alert("something went wrong!");
-      }
-      searchBar.current.value = "";
+      router.push(`/${search_category}/${searchQuery}`);
     }
   }
 
@@ -97,14 +60,14 @@ function Header() {
           <ul ref={dropDownList} className={headerStyles.dropDownList}>
             <li>Movies</li>
             <li>TV Shows</li>
-            <li>Actors</li>
+            <li>People</li>
           </ul>
         </div>
       </div>
 
       <h1
         onClick={() => {
-          dispatch({ type: "isSearched", payload: false });
+          router.push("/");
         }}
         className={headerStyles.title}
       >

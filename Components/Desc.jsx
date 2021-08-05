@@ -9,11 +9,7 @@ function Desc({ setClicked, details }) {
     <div className={ytStyles.youtubeContainer}>
       {isTrailer && (
         <div className={ytStyles.youtube}>
-          <YouTube
-            className={ytStyles.video}
-            videoId={videoId}
-            onEnd={() => setClicked(false)}
-          />
+          <YouTube className={ytStyles.video} videoId={videoId} />
         </div>
       )}
       <div className={ytStyles.contDesc}>

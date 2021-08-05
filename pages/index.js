@@ -1,24 +1,9 @@
-import { useSelector, useDispatch } from "react-redux";
 import Recommendation from "../Components/Recommendation";
-import SearchRes from "../Components/SearchRes";
-import Header from "../Components/Header";
+
 import { caller, endpoints } from "../endpoints";
 
 export default function Home({ results }) {
-  let { isSearched } = useSelector((state) => state);
-
-  return (
-    <div className="App">
-      <div className="trailerShow">
-        <Header />
-        {!isSearched ? (
-          <Recommendation recommendation={results} />
-        ) : (
-          <SearchRes />
-        )}
-      </div>
-    </div>
-  );
+  return <Recommendation recommendation={results} />;
 }
 
 export async function getServerSideProps() {

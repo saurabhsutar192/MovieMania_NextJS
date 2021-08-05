@@ -8,10 +8,17 @@
   list-style: none;
   font-family: "Montserrat", sans-serif;
 }
-.trailerShow {
+.app {
   padding: 20px;
   background-color: #1d3557;
   height: 100vh;
   width: 100vw;
   overflow-y: auto;
+}
+
+.error {
+  margin-top: 40px;
+  font-size: 1.5rem;
+  width: 100%;
+  text-align: center;
 }

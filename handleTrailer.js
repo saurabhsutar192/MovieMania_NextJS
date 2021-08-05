@@ -9,7 +9,7 @@ function handleTrailer(movie, dispatch) {
           dispatch({ type: "setVideoId", payload: urlId?.get("v") });
         })
         .catch(() => {
-          window.alert("No trailer found");
+          setTimeout(() => window.alert("No trailer found"), 10);
         })
     : setTimeout(() => window.alert("No trailer found"), 10);
   dispatch({ type: "removeTrailer" });

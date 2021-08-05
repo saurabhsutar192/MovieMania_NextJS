@@ -1,11 +1,25 @@
 import { caller, endpoints } from "/endpoints";
 import SearchRes from "/Components/SearchRes";
+import router from "next/router";
+import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 
 function SearchResContainer({ res, isActor }) {
-  return res.length !== 0 ? (
-    <SearchRes searchRes={res} isActor={isActor} />
-  ) : (
-    <h1 className="nothing">Nothing found! Try different keywords</h1>
+  return (
+    <div className="SearchResContainer">
+      {res.length !== 0 ? (
+        <SearchRes searchRes={res} isActor={isActor} />
+      ) : (
+        <h1 className="nothing">Nothing found! Try different keywords</h1>
+      )}
+      <div
+        onClick={() => {
+          router.push("/");
+        }}
+        className="homeBtn"
+      >
+        <HomeRoundedIcon />
+      </div>
+    </div>
   );
 }
 

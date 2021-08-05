@@ -1,13 +1,9 @@
 import { useState } from "react";
-
 import { baseImgURL } from "../endpoints";
 import searchStyles from "../CSS/searchRes.module.css";
-import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import { useDispatch } from "react-redux";
-
 import Desc from "./Desc";
 import handleTrailer from "../handleTrailer";
-import router from "next/router";
 
 function SearchRes({ searchRes, isActor }) {
   let dispatch = useDispatch();
@@ -67,14 +63,7 @@ function SearchRes({ searchRes, isActor }) {
           })}
         </div>
       )}
-      <div
-        onClick={() => {
-          router.push("/");
-        }}
-        className={searchStyles.homeBtn}
-      >
-        <HomeRoundedIcon />
-      </div>
+
       {clicked && <Desc setClicked={setClicked} details={details} />}
     </div>
   );

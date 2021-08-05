@@ -29,13 +29,6 @@
 .searchedImg:hover {
   transform: scale(0.9);
 }
-.homeBtn {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  cursor: pointer;
-  z-index: 5;
-}
 
 .actorContainer {
   display: flex;

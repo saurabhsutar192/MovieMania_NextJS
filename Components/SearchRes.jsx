@@ -17,70 +17,55 @@ function SearchRes({ searchRes, isActor }) {
 
   return (
     <div>
-      {searchRes.length !== 0 ? (
-        !isActor ? (
-          <div className={searchStyles.searchRes}>
-            {searchRes.map((content) => {
-              if (content.poster_path !== null) {
-                return (
-                  content.poster_path && (
-                    <div
-                      onClick={() => {
-                        handleTrailer(content, dispatch);
-                        setClicked(true);
-                        setDetails(content);
-                      }}
-                      key={content.id}
-                      className={searchStyles.searchedImg}
-                    >
-                      <img
-                        src={baseImgURL + content.poster_path}
-                        alt={content.original_title}
-                      />{" "}
-                    </div>
-                  )
-                );
-              }
-            })}
-          </div>
-        ) : (
-          <div className={searchStyles.actorContainer}>
-            {searchRes.map((actor) => {
+      {!isActor ? (
+        <div className={searchStyles.searchRes}>
+          {searchRes.map((content) => {
+            if (content.poster_path !== null) {
               return (
-                actor.profile_path && (
-                  <div key={actor.id} className={searchStyles.actor}>
-                    <div className={searchStyles.actorImg}>
-                      {" "}
-                      <img
-                        src={baseImgURL + actor.profile_path}
-                        alt={actor.name}
-                      />
-                    </div>
-                    <div className={searchStyles.actorDesc}>
-                      <div>
-                        Name: <span>{actor.name}</span>
-                      </div>
-                      <div>
-                        Known For :{" "}
-                        <span>
-                          {actor.known_for
-                            .map(
-                              (arr) => arr.original_title || arr.original_name
-                            )
-                            .join(", ")}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                )
+                <div
+                  onClick={() => {
+                    handleTrailer(content, dispatch);
+                    setClicked(true);
+                    setDetails(content);
+                  }}
+                  key={content.id}
+                  className={searchStyles.searchedImg}
+                >
+                  <img
+                    src={baseImgURL + content.poster_path}
+                    alt={content.original_title}
+                  />{" "}
+                </div>
               );
-            })}
-          </div>
-        )
+            }
+          })}
+        </div>
       ) : (
-        <h1 className={searchStyles.nothing}>
-          Nothing found! Try different keywords
-        </h1>
+        <div className={searchStyles.actorContainer}>
+          {searchRes.map((actor) => {
+            return (
+              <div key={actor.id} className={searchStyles.actor}>
+                <div className={searchStyles.actorImg}>
+                  {" "}
+                  <img src={baseImgURL + actor.profile_path} alt={actor.name} />
+                </div>
+                <div className={searchStyles.actorDesc}>
+                  <div>
+                    Name: <span>{actor.name}</span>
+                  </div>
+                  <div>
+                    Known For :{" "}
+                    <span>
+                      {actor.known_for
+                        .map((arr) => arr.original_title || arr.original_name)
+                        .join(", ")}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       )}
       <div
         onClick={() => {

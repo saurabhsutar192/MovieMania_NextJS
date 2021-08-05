@@ -22,3 +22,9 @@
   width: 100%;
   text-align: center;
 }
+
+.nothing {
+  position: absolute;
+  margin: 50px;
+  font-weight: 400;
+}

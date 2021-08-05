@@ -36,11 +36,6 @@
   cursor: pointer;
   z-index: 5;
 }
-.nothing {
-  position: absolute;
-  margin: 50px;
-  font-weight: 400;
-}
 
 .actorContainer {
   display: flex;

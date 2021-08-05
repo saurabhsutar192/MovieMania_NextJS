@@ -2,7 +2,11 @@ import { caller, endpoints } from "/endpoints";
 import SearchRes from "/Components/SearchRes";
 
 function SearchResContainer({ res, isActor }) {
-  return <SearchRes searchRes={res} isActor={isActor} />;
+  return res.length !== 0 ? (
+    <SearchRes searchRes={res} isActor={isActor} />
+  ) : (
+    <h1 className="nothing">Nothing found! Try different keywords</h1>
+  );
 }
 
 export default SearchResContainer;
@@ -30,7 +34,9 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      res: res.data.results,
+      res: res.data.results.filter(
+        (arr) => arr.profile_path != null || arr.poster_path != null
+      ),
       isActor: isActor,
     },
   };

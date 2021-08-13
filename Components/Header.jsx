@@ -4,8 +4,8 @@ import headerStyles from "../CSS/header.module.css";
 import { useRouter } from "next/router";
 
 function Header() {
-  let [search_category, setSearch_category] = useState("");
-
+  let [search_category, setSearch_category] = useState("Movies");
+  let [searchQuery, setSearchQuery] = useState("");
   let dropDownList = useRef();
   let dropDownBtn = useRef();
 
@@ -21,11 +21,15 @@ function Header() {
     setSearch_category(category);
   }
 
-  function search(e) {
-    let searchQuery = e.target.value;
-    if (e.keyCode === 13 && searchQuery !== "") {
+  function submit(e) {
+    e.preventDefault();
+    if (searchQuery !== "") {
       router.push(`/${search_category}/${searchQuery}`);
     }
+  }
+
+  function search(e) {
+    setSearchQuery(e.target.value);
   }
 
   useEffect(() => {
@@ -35,15 +39,14 @@ function Header() {
     for (let i = 0; i < list.length; i++) {
       list[i].addEventListener("click", setCategory);
     }
-
-    setSearch_category("Movies");
   }, []);
 
   return (
     <header className={headerStyles.header}>
-      <div className={headerStyles.searchContainer}>
+      <form onSubmit={submit} className={headerStyles.searchContainer}>
         <input
-          onKeyDown={search}
+          value={searchQuery}
+          onChange={search}
           type="text"
           className={headerStyles.search}
           placeholder="Search"
@@ -52,7 +55,7 @@ function Header() {
           onClick={toggleDropDown}
           className={headerStyles.dropDownContainer}
         >
-          <button className={headerStyles.dropDownBtn}>
+          <button type="button" className={headerStyles.dropDownBtn}>
             <span ref={dropDownBtn}>Movies</span>
             <ArrowDropDownIcon />
           </button>
@@ -62,7 +65,7 @@ function Header() {
             <li>People</li>
           </ul>
         </div>
-      </div>
+      </form>
 
       <h1
         onClick={() => {

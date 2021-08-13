@@ -8,7 +8,7 @@ function Header() {
 
   let dropDownList = useRef();
   let dropDownBtn = useRef();
-  let searchBar = useRef();
+
   let router = useRouter();
 
   function toggleDropDown() {
@@ -43,7 +43,6 @@ function Header() {
     <header className={headerStyles.header}>
       <div className={headerStyles.searchContainer}>
         <input
-          ref={searchBar}
           onKeyDown={search}
           type="text"
           className={headerStyles.search}
